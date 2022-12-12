@@ -18,3 +18,6 @@ Open a terminal or command prompt, navigate to the directory where you saved the
 
 python trade_btcusdt.py
 This will run the script, and it will send a request to the Binance API to trade BTCUSDT. The response from the API will be printed to the terminal or command prompt.
+
+
+Note 1: This Python script does not import the Binance library. Instead, it uses the requests library to send a POST request to the Binance API to trade BTCUSDT. The Binance API provides a way for developers to access the Binance exchange and trade cryptocurrencies programmatically, without the need for a separate library.
