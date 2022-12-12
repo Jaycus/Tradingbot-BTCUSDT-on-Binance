@@ -1,0 +1,41 @@
+# Import the necessary libraries
+import requests
+import json
+
+# Set the API key and secret
+api_key = "YOUR_API_KEY"
+api_secret = "YOUR_API_SECRET"
+
+# Set the URL for the Binance API
+base_url = "https://api.binance.com"
+
+# Set the symbol for BTCUSDT
+symbol = "BTCUSDT"
+
+# Set the parameters for the trade
+params = {
+    "symbol": symbol,
+    "side": "BUY",
+    "type": "LIMIT",
+    "timeInForce": "GTC",
+    "quantity": 1,
+    "price": 10000,
+}
+
+# Set the headers for the request
+headers = {
+    "X-MBX-APIKEY": api_key
+}
+
+# Compute the signature for the request
+query_string = "&".join([f"{key}={value}" for key, value in params.items()])
+signature = hmac.new(api_secret.encode("utf-8"), query_string.encode("utf-8"), hashlib.sha256).hexdigest()
+
+# Add the signature to the parameters
+params["signature"] = signature
+
+# Send the request to the Binance API
+response = requests.post(f"{base_url}/api/v3/order", params=params, headers=headers)
+
+# Print the response from the API
+print(json.loads(response.text))
