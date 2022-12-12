@@ -1,6 +1,8 @@
 # Import the necessary libraries
 import requests
 import json
+import hmac
+import hashlib
 
 # Set the API key and secret
 api_key = "YOUR_API_KEY"
@@ -12,14 +14,18 @@ base_url = "https://api.binance.com"
 # Set the symbol for BTCUSDT
 symbol = "BTCUSDT"
 
-# Set the parameters for the trade
+# Set the trade parameters
+trade_quantity = 1
+trade_price = 10000
+
+# Set the parameters for the order
 params = {
     "symbol": symbol,
     "side": "BUY",
     "type": "LIMIT",
     "timeInForce": "GTC",
-    "quantity": 1,
-    "price": 10000,
+    "quantity": trade_quantity,
+    "price": trade_price,
 }
 
 # Set the headers for the request
